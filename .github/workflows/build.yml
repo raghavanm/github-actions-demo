@@ -16,5 +16,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
+    - name: Generate build number
+      uses: einaregilsson/build-number@v2
+    - name: Print the build number
+      run: echo "Generate build number is" $BUILD_NUMBER
     - name: Build with Maven
       run: mvn -B package --file pom.xml
