@@ -28,11 +28,9 @@ jobs:
     - name: Tag generator
       run: echo ${{ env.APP }}-${{ env.RELEASE_INFO }}-$BUILD_NUMBER
     - name: Pushing tag info to GitHub
-      id: tag_info
       run: |
-        tag_info: ${{ env.APP }}-${{ env.RELEASE_INFO }}-$BUILD_NUMBER
-        echo "Generated tag info is " ${{ steps.tag_info.outputs.tag_info }}
-        git tag ${{ steps.tag_info.outputs.tag_info }}
-        git push origin ${{ steps.tag_info.outputs.tag_info }}
+        echo :: set-env name=tag_info::${{ env.APP }}-${{ env.RELEASE_INFO }}-$BUILD_NUMBER
+        git tag $tag_info
+        git push origin $tag_info
     - name: Build with Maven
       run: mvn -B package --file pom.xml
