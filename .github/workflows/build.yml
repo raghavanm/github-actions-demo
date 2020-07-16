@@ -30,6 +30,7 @@ jobs:
     - name: Pushing tag info to GitHub
       run: |
         echo :: set-env name=tag_info::${{ env.APP }}-${{ env.RELEASE_INFO }}-$BUILD_NUMBER::$tag_info
+        echo $tag_info
         git tag $tag_info
         git push origin $tag_info
     - name: Build with Maven
