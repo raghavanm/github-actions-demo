@@ -25,13 +25,11 @@ jobs:
         token: ${{secrets.github_token}}
     - name: Print the build number
       run: echo "Generate build number is" $BUILD_NUMBER
-    - name: Tag generator
+    - name: Generating and pushing tag info to GitHub
       env:
         TAG_INFO: ${{ env.APP }}-${{ env.RELEASE_INFO }}-$BUILD_NUMBER
-      run: echo ${{ env.TAG_INFO }}
-    - name: Pushing tag info to GitHub
       run: |
-        echo ${{ env.TAG_INFO }}
+        echo "Generated tag info is " ${{ env.TAG_INFO }}
         git tag ${{ env.TAG_INFO }}
         git push origin ${{ env.TAG_INFO }}
     - name: Build with Maven
