@@ -26,6 +26,6 @@ jobs:
     - name: Print the build number
       run: echo "Generate build number is" $BUILD_NUMBER
     - name: Tag generator
-      run: echo ${{ env.APP }}-${{ RELEASE_INFO }}-$BUILD_NUMBER
+      run: echo ${{ env.APP }}-${{ env.RELEASE_INFO }}-$BUILD_NUMBER
     - name: Build with Maven
       run: mvn -B package --file pom.xml
