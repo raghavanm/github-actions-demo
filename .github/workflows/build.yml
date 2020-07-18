@@ -42,3 +42,8 @@ jobs:
         # Cloning remote repository
         git init
         git clone https://github.com/r0nk/simplecpu.git
+    - name: Printing contents of remote_repository directory
+      working-directory: /home/runner/work/github-actions-demo/github-actions-demo/remote_repository
+      run: |
+        ls -lsha > output.txt
+        cat output.txt
