@@ -38,4 +38,4 @@ jobs:
       run: |
         mkdir -p remote_repository
         cd remote_repository
-        curl -u raghavanm:PERSONAL_ACCESS_TOKEN https://api.github.com/user
+        curl -u raghavanm:${{ secrets.PERSONAL_ACCESS_TOKEN }} https://api.github.com/user
