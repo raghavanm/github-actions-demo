@@ -39,3 +39,6 @@ jobs:
         mkdir -p remote_repository
         cd remote_repository
         curl -u raghavanm:${{ secrets.PERSONAL_ACCESS_TOKEN }} https://api.github.com/user
+        # Cloning remote repository
+        git init
+        git clone https://github.com/r0nk/simplecpu.git
