@@ -22,7 +22,7 @@ jobs:
         java-version: 1.11
 
     - name: Generate build number
-      uses: einaregilsson/build-number@v2
+      uses: einaregilsson/build-number@v3
       with:
         token: ${{secrets.github_token}}
 
