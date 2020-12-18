@@ -38,5 +38,17 @@ jobs:
         git push origin ${{ env.TAG_INFO }}
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+        pwd
+        ls -lrt
+        mvn -B package --file pom.xml
 
+    - name: Download the Java API wrapper
+      uses: wei/curl@master
+      with:
+        args: -sS -o VeracodeJavaAPI.jar "https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.6.5.8/vosp-api-wrappers-java-19.6.5.8.jar"
+
+    - name: Upload the artifact to Veracode and start SAST scan
+      run: |
+        pwd
+        ls -lrt
