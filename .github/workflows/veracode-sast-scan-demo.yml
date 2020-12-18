@@ -46,7 +46,9 @@ jobs:
         args: -sS -o VeracodeJavaAPI.jar "https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.6.5.8/vosp-api-wrappers-java-19.6.5.8.jar"
 
     - name: Upload the artifact to Veracode and start SAST scan
-      working-directory: /home/runner/work/github-actions-demo/github-actions-demo/target
+      working-directory: /home/runner/work/github-actions-demo/github-actions-demo
       run: |
         pwd
         ls -lrt
+        java -jar VeracodeJavaAPI.jar -action uploadandscan -vid ${{ secrets.VERACODE_API_ID }} -vkey ${{ secrets.VERACODE_API_KEY }} -appname 'Verint Community' -createprofile false -sandboxname SpringBootHelloWorldSastScan -createsandbox false -version "Veracode static scan job $GITHUB_RUN_NUMBER" -filepath target/spring-boot-hello-world-0.0.1-SNAPSHOT.war
+        
