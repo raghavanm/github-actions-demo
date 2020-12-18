@@ -1,0 +1,42 @@
+name: Veracode SAST scan for Java
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      APP: HelloWorld
+      RELEASE_INFO: 12.20-Dev
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Set up JDK 1.11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+
+    - name: Generate build number
+      uses: einaregilsson/build-number@v2
+      with:
+        token: ${{secrets.github_token}}
+
+    - name: Print the build number
+      run: echo "Generate build number is" $BUILD_NUMBER
+
+    - name: Generating and pushing tag info to GitHub
+      env:
+        TAG_INFO: ${{ env.APP }}-${{ env.RELEASE_INFO }}-$BUILD_NUMBER
+      run: |
+        echo "Generated tag info is " ${{ env.TAG_INFO }}
+        git tag ${{ env.TAG_INFO }}
+        git push origin ${{ env.TAG_INFO }}
+
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
