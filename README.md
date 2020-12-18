@@ -1,6 +1,6 @@
 # GitHub Actions demo
 
-<b>Workflow for Veracode SAST Scan demo.</b><br/>
+<b>Workflow for Veracode SAST Scan demo.</b><br/><br/>
 <b>veracode-sast-scan-demo.yml</b> - This is a static scan. It does the following things - 
 1. Take checkout of the repository.
 2. Setup Java version 11 in the runner.
