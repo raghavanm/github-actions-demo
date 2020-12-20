@@ -45,7 +45,16 @@ jobs:
 
     - name: Run an analysis of the master branch
       working-directory: /home/runner/work/github-actions-demo/github-actions-demo
-      run: |
-        pwd
-        ls -lrt
+      run: sonar-scanner
+       -Dsonar.host.url=${{ secrets.SONAR_URL }}
+       -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+       -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+       -Dsonar.projectName=SpringBootHelloWorldDemo
+       -Dsonar.sources=src/main
+       -Dsonar.tests=src/test
+       -Dsonar.language=java
+       -Dsonar.java.binaries=target
+       -Dsonar.scm.provider=git
+       -Dsonar.tfvc.collectionuri='https://workaround-tfvc-plugin-issue/DefaultCollection'
+       -Dsonar.dynamicAnalysis=reuseReports       
         
